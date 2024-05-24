@@ -32,7 +32,7 @@
 $ npm install
 ```
 
-## Running the app
+## How to start service
 
 ```bash
 # development
@@ -40,22 +40,44 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
-
+## How to test
+### Encrypt Service
 ```bash
-# unit tests
-$ npm run test
+# send method POST body with payload
+# url: http://localhost:3000/get-encrypt-data
+{
+  "payload": "chakrit"
+}
+```
+If success service will return
+```bash
+{
+  "success": bool,
+  "error_code": error.code,
+  "data1": string,
+  "data2": string,
+}
+```
 
-# e2e tests
-$ npm run test:e2e
+### Decrypt Service
+Put data1 and data2 from Encrypt service to body
+```bash
+# send method POST body with data1 and data2
+# data1 contain encrypted AESKEY
+# data2 contain encrypted iv:payload
+{
+  "data1": "<encrypted AES KEY>"
+  "data2": "<encrypted iv:payload>"
+}
+```
 
-# test coverage
-$ npm run test:cov
+If success service will return
+```bash
+  "success": bool,
+  "error_code": error.code,
+  "payload": string
 ```
 
 ## Support
